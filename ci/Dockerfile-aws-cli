@@ -1,0 +1,3 @@
+FROM amazon/aws-cli
+RUN mkdir -p "$DOCKER_CONFIG"
+RUN yum install jq -y
