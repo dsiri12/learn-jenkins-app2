@@ -12,6 +12,7 @@ pipeline {
     stage('Docker') {
       steps {
         sh 'docker build -t my-playwright .'
+        // class 74
       }
     }
 
