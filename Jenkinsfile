@@ -45,9 +45,13 @@ pipeline {
           args "-v /var/run/docker.sock:/var/run/docker.sock --entrypoint=''"
         }
       }
+      environment {
+        DOCKER_CONFIG = '/tmp/.docker'
+      }
 
       steps {
         sh '''
+          mkdir -p "$DOCKER_CONFIG"
           docker build -t myjenkinsapp .
         '''
       }
