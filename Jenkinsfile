@@ -14,6 +14,7 @@ pipeline {
     stage('Docker') {
       steps {
         sh 'docker build -t my-playwright .'
+        sh 'docker build -t my-aws-cli -f ci/Dockerfile-aws-cli .'
         // class 74
       }
     }
@@ -40,7 +41,7 @@ pipeline {
     stage('Build Docker image') {
       agent {
         docker {
-          image 'my-aws-cli'
+          image 'docker:cli'
           reuseNode true
           args "-u root -v /var/run/docker.sock:/var/run/docker.sock --entrypoint=''"
         }
