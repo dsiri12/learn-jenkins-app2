@@ -121,7 +121,8 @@ pipeline {
                netlify status
                 netlify deploy --dir=build --json --no-build > deploy-output.json
 
-                CI_ENVIRONMENT_URL=$(s/.bin/node-jq -r '.deploy_url' deploy-output.json)
+                CI_ENVIRONMENT_URL=$(node -e "const deployUrl = require('./deploy-output.json').deploy_url; if (!deployUrl) throw new Error('Netlify deployment response is missing deploy_url'); process.stdout.write(deployUrl)")
+          
                 npx playwright test  --reporter=html
             '''
         }
