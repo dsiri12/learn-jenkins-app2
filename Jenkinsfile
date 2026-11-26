@@ -117,7 +117,6 @@ pipeline {
 
         steps {
             sh '''
-                netlify --version
                 echo "Deploying to staging. Site ID: $NETLIFY_SITE_ID"
                netlify status
                 netlify deploy --dir=build --json --no-build > deploy-output.json
@@ -149,7 +148,6 @@ pipeline {
           steps {
             sh '''
               node --version
-              netlify --version
               echo "Deploying to production. Site ID: $NETLIFY_SITE_ID"
               netlify status
               netlify deploy --dir=build --prod --no-build
